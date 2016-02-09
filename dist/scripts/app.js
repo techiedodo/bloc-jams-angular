@@ -3,7 +3,7 @@
         $locationProvider
             .html5Mode({
                 enabled: true,
-                requreBase: false
+                requireBase: false
         });
         $stateProvider
             .state('landing', {
@@ -20,6 +20,6 @@
             });
     }
     angular
-        .module('blocJams', ['ui.router']);
+        .module('blocJams', ['ui.router'])
         .config(config);
 })();
