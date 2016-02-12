@@ -1,10 +1,9 @@
 (function() {
-    function AlbumCtrl() {
-       // put the album data here and attach elements to scope that you want to use in the html
-        this.albumData = angular.copy(albumPicasso);
+    function AlbumCtrl(Fixtures) {
+        this.albumData = Fixtures.getAlbum();
     }
 
     angular
         .module('blocJams')
-        .controller('AlbumCtrl', AlbumCtrl);
+        .controller('AlbumCtrl', ['Fixtures', AlbumCtrl]);
 })();
