@@ -2,7 +2,12 @@
     function SongPlayer($rootScope, Fixtures) {
         var SongPlayer = {};
         
+        /**
+        *@desc Information for current album
+        *@type {object}
+        */
         var currentAlbum = Fixtures.getAlbum();
+        
         /**
         * @desc Buzz object audio file
         * @type {Object}
@@ -33,6 +38,10 @@
             SongPlayer.currentSong = song;
         };
         
+        /**@function playSong
+        *@desc Play a song
+        *@param {Object} song
+        */
         function playSong(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.play();
@@ -40,6 +49,12 @@
             }
         };
         
+        
+        /**
+        *@function stopSong
+        *@desc Stop a song
+        *@param {Object} song
+        */
         function stopSong(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
@@ -47,6 +62,12 @@
             }
         };
         
+        /**
+        * @function getSongIndex
+        * @desc Get index of song in the songs array
+        * @param {Object} song
+        * @returns {Number}
+        */
         var getSongIndex = function(song) {
             return currentAlbum.songs.indexOf(song);
         };
@@ -62,6 +83,12 @@
         * @type {Number}
         */
         SongPlayer.currentTime = null;
+        
+        /**
+        *@desc Volume used for songs
+        *@type {Number}
+        */
+        SongPlayer.volume = 80;
         
          /**
          * @function play
@@ -90,6 +117,10 @@
             song.playing = false;
         };
         
+        /**
+        *@function previous
+        *@desc Set song to previous song
+        */
         SongPlayer.previous = function() {
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex--;
@@ -103,6 +134,10 @@
             }
         };
         
+        /**
+        *@function next
+        *@desc Set song to next song
+        */
         SongPlayer.next = function() {
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex++;
@@ -127,6 +162,17 @@
             }
         };
 
+        /**
+        * @function setVolume
+        * @desc Set volume for songs
+        * @param {Number} volume
+        */
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+            }
+            SongPlayer.volume = volume;
+        };
         
         return SongPlayer;
     }
